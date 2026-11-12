@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package sum;
+
+option go_package = "github.com/darkvard/go-gRPC/calculator/proto";
+
+message NumberRequest {
+  int64 first_number = 1;
+  int64 second_number = 2;
+}
+
+message NumberResponse {
+    int64 result_number = 1;
+}
+
+service CalculatorService {
+  rpc Sum(NumberRequest) returns (NumberResponse);
+}
+
