@@ -3,12 +3,14 @@ package main
 import (
 	"testing"
 
+	"google.golang.org/grpc"
+
 	pb "github.com/darkvard/go-gRPC/greet/proto"
 )
 
 func TestGRPCServerRegistersProtoService(t *testing.T) {
 	descriptor := pb.GreetService_ServiceDesc
-	info := newGRPCServer().GetServiceInfo()
+	info := newGRPCServer([]grpc.ServerOption{}).GetServiceInfo()
 	service, ok := info[descriptor.ServiceName]
 	if !ok {
 		t.Fatalf("service %q is not registered", descriptor.ServiceName)

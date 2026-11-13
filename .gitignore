@@ -1,1 +1,8 @@
+# Go Compiled Binaries
 /bin
+
+# SSL/TLS Certificates
+*.key
+*.pem
+*.crt
+*.csr
