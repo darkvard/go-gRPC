@@ -21,7 +21,6 @@ func main() {
 
 	c := pb.NewBlogServiceClient(conn)
 
-
 	id := createBlog(c)
 	readBlog(c, id)
 	// readBlog(c, "is-not-hex-string-id")
@@ -32,4 +31,7 @@ func main() {
 	
 	fmt.Println("-----------------")
 	deleteBlog(c, id)
+
+	fmt.Println("-----------------")
+	listBlog(c)
 }
