@@ -6,3 +6,6 @@
 *.pem
 *.crt
 *.csr
+
+# Ignore generated Protocol Buffers files
+*.pb.go
