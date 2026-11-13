@@ -15,6 +15,7 @@ ifeq ($(OS), Windows_NT)
 	RM_RF_CMD = ${RM_F_CMD} -Recurse
 	SERVER_BIN = ${SERVER_DIR}.exe
 	CLIENT_BIN = ${CLIENT_DIR}.exe
+	PROTOC_INCLUDE ?=
 else
 	SHELL := bash
 	SHELL_VERSION = $(shell echo $$BASH_VERSION)
@@ -34,6 +35,7 @@ else
 	RM_RF_CMD = ${RM_F_CMD} -r
 	SERVER_BIN = ${SERVER_DIR}
 	CLIENT_BIN = ${CLIENT_DIR}
+	PROTOC_INCLUDE ?= /usr/include
 endif
 
 .DEFAULT_GOAL := help
@@ -48,7 +50,7 @@ blog: $@ ## Generate Pbs and build for blog
 
 $(project):
 	@${CHECK_DIR_CMD}
-	protoc -I$@/${PROTO_DIR} --go_opt=module=${PACKAGE} --go_out=. --go-grpc_opt=module=${PACKAGE} --go-grpc_out=. $@/${PROTO_DIR}/*.proto
+	protoc -I$@/${PROTO_DIR} $(if $(PROTOC_INCLUDE),-I$(PROTOC_INCLUDE)) --go_opt=module=${PACKAGE} --go_out=. --go-grpc_opt=module=${PACKAGE} --go-grpc_out=. $@/${PROTO_DIR}/*.proto
 	go build -o ${BIN_DIR}/$@/${SERVER_BIN} ./$@/${SERVER_DIR}
 	go build -o ${BIN_DIR}/$@/${CLIENT_BIN} ./$@/${CLIENT_DIR}
 
