@@ -13,7 +13,7 @@ import (
 var addr string = "0.0.0.0:50051"
 
 type Server struct {
-	pb.UnimplementedGreetServiceServer
+	pb.GreetServiceServer
 }
 
 func main() {

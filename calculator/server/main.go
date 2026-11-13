@@ -12,7 +12,7 @@ import (
 var addr string = "0.0.0.0:60061"
 
 type Server struct {
-	pb.UnimplementedCalculatorServiceServer
+	pb.CalculatorServiceServer
 }
 
 func main() {

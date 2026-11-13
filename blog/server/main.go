@@ -19,7 +19,7 @@ const (
 )
 
 type Server struct {
-	pb.UnimplementedBlogServiceServer
+	pb.BlogServiceServer
 	collection *mongo.Collection
 }
 
