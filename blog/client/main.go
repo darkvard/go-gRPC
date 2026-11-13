@@ -22,5 +22,6 @@ func main() {
 
 	id := createBlog(c)
 	readBlog(c, id)
-	readBlog(c, "is-not-hex-string-id")
+	// readBlog(c, "is-not-hex-string-id")
+	updateBlog(c, id)
 }
