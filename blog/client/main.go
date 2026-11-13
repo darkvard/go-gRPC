@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 
 	"google.golang.org/grpc"
@@ -20,8 +21,15 @@ func main() {
 
 	c := pb.NewBlogServiceClient(conn)
 
+
 	id := createBlog(c)
 	readBlog(c, id)
 	// readBlog(c, "is-not-hex-string-id")
+
+	fmt.Println("-----------------")
 	updateBlog(c, id)
+	readBlog(c, id)
+	
+	fmt.Println("-----------------")
+	deleteBlog(c, id)
 }
